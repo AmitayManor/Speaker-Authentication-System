@@ -4,26 +4,22 @@ from scipy.signal import lfilter
 from scipy.signal.windows import hamming
 import pandas as pd
 
-
-
 # Define your classification thresholds
-VOCAL_ZCR_THRESHOLD = 0.6
-ENERGY_THRESHOLD = 0.1
-
+ENERGY_THRESHOLD = 0.001
+def remove_silence(audio_data, threshold=ENERGY_THRESHOLD):
+    """Removes silence from an audio signal. threshold sets by the """
+    # Assuming audio_data is a 1-D numpy array
+    return audio_data[np.abs(audio_data) > threshold]
 
 # Function to classify each frame based on a tuple of ZCR and energy
-def classify_frame(zcr, energy):
+def classify_frame(energy):
     # Define clear, non-overlapping conditions for each classification
     if energy < ENERGY_THRESHOLD:
         return 'silence'  # Low ZCR and low energy indicate silence
-    elif zcr < VOCAL_ZCR_THRESHOLD and energy > ENERGY_THRESHOLD:
-        return 'vocal'  # Low ZCR but high energy indicate vocal
-    else:
-        return 'unvocal'  # Anything else is considered an error or unknown
 
 
 # Main processing function
-def process_audio(pcm_path, sample_rate=10000, win_length=1024, overlap=512):
+def process_audio(pcm_path, sample_rate=16000, win_length=1024, overlap=512):
     audio = read_pcm_file(pcm_path, sample_rate)
     audio = pre_emphasis_filter(audio)
     audio = remove_dc(audio)
@@ -37,7 +33,7 @@ def process_audio(pcm_path, sample_rate=10000, win_length=1024, overlap=512):
 
 
 # Load the PCM file
-def read_pcm_file(file_path, sample_rate=10000):
+def read_pcm_file(file_path, sample_rate=16000):
     with open(file_path, 'rb') as pcm_file:
         pcm_data = np.fromfile(pcm_file, dtype=np.int16)
     # Write to WAV file
