@@ -1,6 +1,22 @@
 import numpy as np
 import librosa
 
+
+"""     Work Flow:
+
+        1. Read processed audio data from relevant sub folder
+        2. Compute LPCC:
+            1. Compute LPC
+            2. Compute LPC to Cepstral
+        3. Save new data in a new sub folder (format: {[data] : 'Speaker name'})
+        4. Move to next step: classify with Gauss NB
+
+"""
+
+
+
+
+
 def compute_lpcc(signal, sr, order):
     """
     Compute Linear Prediction Cepstral Coefficients (LPCC) from an audio signal.

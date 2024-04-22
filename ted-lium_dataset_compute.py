@@ -6,6 +6,24 @@ from features_extraction import compute_lpcc
 from sklearn.naive_bayes import GaussianNB
 import pickle
 
+
+"""     Work Flow:
+        
+        1. 
+
+
+
+
+
+
+"""
+
+
+def example():
+    
+    clf_pf = GaussianNB()
+
+
 def load_audio_file(file_path, sr=16000):
     """Load an audio file at the given sample rate."""
     audio, sr = librosa.load(file_path, sr=sr)
@@ -14,6 +32,7 @@ def load_audio_file(file_path, sr=16000):
 
 def process_tedlium_dataset(directory_path):
     """Process all audio files in the specified directory of the TED-LIUM dataset."""
+    # Maybe it should be the train subfolder of the various speakers
 
     lpcc_features = []
     for filename in os.listdir(directory_path):

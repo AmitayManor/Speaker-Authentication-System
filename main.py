@@ -1,6 +1,9 @@
 from audio_recordings import record_audio
 from features_extraction import compute_lpcc, lpc_to_cepstral
 import numpy as np
+from pre_proccess import process_audio
+import os
+
 
 
 def generate_sine_wave(frequency, sample_rate, duration):
@@ -52,7 +55,17 @@ def test_lpcc_with_random_noise():
     print(f"lpcc_features with random noise: {lpcc_features}")
 
 if __name__ == "__main__":
-    test_lpcc_with_sine_wave()
+
+    path = "TEDLIUM_release1\\test_short_clips"
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            if file.endswith(".wav"):
+                # Construct the full file path
+                path = os.path.join(root, file)
+                audio_class = process_audio(path)
+                print(audio_class)
+
+    """test_lpcc_with_sine_wave()
     test_lpcc_with_zero_input()
     test_lpcc_with_random_noise()
-    print("All tests passed!")
+    print("All tests passed!")"""
