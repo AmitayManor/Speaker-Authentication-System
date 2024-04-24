@@ -2,26 +2,10 @@ import librosa
 import numpy as np
 import os
 import sqlite3
+import pickle
 from features_extraction import compute_lpcc
 from sklearn.naive_bayes import GaussianNB
-import pickle
-
-
-"""     Work Flow:
-        
-        1. 
-
-
-
-
-
-
-"""
-
-
-def example():
-    
-    clf_pf = GaussianNB()
+import json
 
 
 def load_audio_file(file_path, sr=16000):
@@ -40,7 +24,7 @@ def process_tedlium_dataset(directory_path):
             file_path = os.path.join(directory_path, filename)
             audio = load_audio_file(file_path)
             #TODO: Implement pre-proccessing functions on the data base
-            lpcc = compute_lpcc(audio, sr=16000, order=12)
+            lpcc = compute_lpcc(audio, order=12)
             lpcc_features.append(lpcc)
 
     return lpcc_features
@@ -91,14 +75,20 @@ def load_features(db_path):
         y.append(speaker_id)
     return np.array(X), np.array(y)
 
+
 def train_classifier(X, y):
-    """ Train a Gaussian Naive Bayes classifier. """
-    clf = GaussianNB()
-    clf.fit(X, y)
-    return clf
+    """ Train a Gaussian Naive Bayes classifier.
+    x = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])
+    y = np.array([1, 1, 1, 0, 0, 0])"""
+
+    clf_pf = GaussianNB(priors=[0.1, 0.9])
+    clf_pf.fit(X, y)
+    clf_pf.predict([1, 1])
+
 
 def save_model(model, model_path='model.pkl'):
     """ Serialize the trained model to a file. """
     with open(model_path, 'wb') as f:
         pickle.dump(model, f)
+
 
