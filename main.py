@@ -4,6 +4,9 @@ from pre_proccess import process_audio_folder
 from features_extraction import extract_features_from_processed_data, plot_lpcc_features
 import json
 from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+from sklearn.metrics import det_curve, DetCurveDisplay
 
 
 def generate_sine_wave(frequency, sample_rate, duration):
@@ -112,33 +115,104 @@ def train_classifier(X, y):
     x = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])
     y = np.array([1, 1, 1, 0, 0, 0])"""
 
-    clf_pf = GaussianNB(priors=[0.05, 0.95])
+    clf_pf = GaussianNB(priors=[0.5, 0.5])
     clf_pf.fit(X, y)
 
     return clf_pf
 
 
+def compute_DET_confusion(X_test, y_test):
+    y_pred = clf.predict(X_test)
+
+    # Step 2: Compute confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
+
+    """# Step 3: Plot confusion matrix
+    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
+    plt.title('Confusion Matrix')
+    plt.colorbar()
+    plt.xlabel('Predicted Label')
+    plt.ylabel('True Label')
+    plt.show()"""
+
+    # Step 4: Compute DET curve
+    fpr, fnr, _ = det_curve(y_test, y_pred)
+    display = DetCurveDisplay(fpr=fpr, fnr=fnr, estimator_name="GaussianNB")
+    display.plot()
+    plt.title('DET Curve')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('False Negative Rate')
+    plt.show()
+
+
+def mohamad_def(clf, X_test, y_test):
+    fig, ax_det = plt.subplots(1, 1, figsize=(11, 5))
+    DetCurveDisplay.from_estimator(clf, X_test,y_test, ax=ax_det)
+    ax_det.set_title("Detection Error Tradeoff (DET) curves")
+    ax_det.grid(linestyle="--")
+    plt.legend()
+    plt.show()
+
+
+
 if __name__ == "__main__":
-    """path = "TEDLIUM_release1\\data_set_initial"
+    """path = "TEDLIUM_release1\\db_for_threshold\\thershold_db"
     data = process_audio_folder(path)
     extracted_features = extract_features_from_processed_data(data)
 
     for x, y in extracted_features.items():
-        write_features_to_json(y, x, False, 'TEDLIUM_release1\\data_set_initial\\out.txt')"""
+        write_features_to_json(y, x, False, 'TEDLIUM_release1\\db_for_threshold\\thershold_db\\out_threshold.txt')
+    
 
-    """path = "TEDLIUM_release1\\test_train_clf"
+    path = "TEDLIUM_release1\\db_for_threshold\\threshold_db_test"
     data = process_audio_folder(path)
     extracted_features = extract_features_from_processed_data(data)
 
     for x, y in extracted_features.items():
-        write_features_to_json(y, x, False, 'TEDLIUM_release1\\test_train_clf\\out.txt')"""
+        write_features_to_json(y, x, False, 'TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\out_threshold_test.txt')
+    """
 
-    X_test, y_test = read_features_and_labels('TEDLIUM_release1\\test_train_clf\\out.txt')
-    X, y = read_features_and_labels('TEDLIUM_release1\\data_set_initial\\out.txt')
+    X_test, y_test = read_features_and_labels('TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\out_threshold_test.txt')
+    X, y = read_features_and_labels('TEDLIUM_release1\\db_for_threshold\\thershold_db\\out_threshold.txt')
+
 
     print("Train Data")
     clf = train_classifier(X, y)
-    print("Check for David Blaine")
-    print(clf.predict(X_test[0:5]))
-    print("Check for other Speaker")
-    print(clf.predict(X_test[6::]))
+
+    y_pred = clf.predict(X_test)
+
+
+    fig, ax_det = plt.subplots(1, 1, figsize=(11, 5))
+    #DetCurveDisplay.from_estimator(clf, X_test, y_test, ax=ax_det)
+    DetCurveDisplay.from_predictions(clf, y_test, y_pred)
+    ax_det.set_title("Detection Error Tradeoff (DET) curves")
+    ax_det.grid(linestyle="--")
+    plt.legend()
+    plt.show()
+
+    """print((clf.predict(X_test[0:9])))
+    print("Other")
+    print(clf.predict(X_test[10::]))
+
+    print("Check for Dan Dennett")
+    data = clf.predict_proba(X_test[0:9])
+    formatted_data = [[f"{num:.3f}" for num in sublist] for sublist in data]
+
+    # Print formatted data
+    for sublist in formatted_data:
+        print(sublist)
+
+    print("Others")
+    data_test = clf.predict_proba(X_test[10::])
+    formatted_data_test = [[f"{num:.6f}" for num in sublist_test] for sublist_test in data_test]
+
+    # Print formatted data
+    for sublist_test in formatted_data_test:
+        print(sublist_test)"""
+
+
+    """print("Check for other Speaker")
+    test_data = clf.predict_proba(X_test[9::])
+    rounded_data_test = np.round(test_data, 4)
+    print(rounded_data_test)
+    print(clf.predict(X_test[9::]))"""
