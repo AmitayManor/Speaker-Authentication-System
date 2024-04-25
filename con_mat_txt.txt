@@ -1,0 +1,800 @@
+
+Threshold: 0.108 
+[tn=102, fp=86
+fn=0, tp=76]
+
+Threshold: 0.108 
+[tn=54%, fp=45%
+fn=0%, tp=100%]
+
+Threshold: 0.12 
+[tn=102, fp=86
+fn=1, tp=75]
+
+Threshold: 0.12 
+[tn=54%, fp=45%
+fn=1%, tp=98%]
+
+Threshold: 0.122 
+[tn=103, fp=85
+fn=1, tp=75]
+
+Threshold: 0.122 
+[tn=54%, fp=45%
+fn=1%, tp=98%]
+
+Threshold: 0.123 
+[tn=104, fp=84
+fn=1, tp=75]
+
+Threshold: 0.123 
+[tn=55%, fp=44%
+fn=1%, tp=98%]
+
+Threshold: 0.132 
+[tn=105, fp=83
+fn=1, tp=75]
+
+Threshold: 0.132 
+[tn=55%, fp=44%
+fn=1%, tp=98%]
+
+Threshold: 0.139 
+[tn=106, fp=82
+fn=1, tp=75]
+
+Threshold: 0.139 
+[tn=56%, fp=43%
+fn=1%, tp=98%]
+
+Threshold: 0.158 
+[tn=107, fp=81
+fn=1, tp=75]
+
+Threshold: 0.158 
+[tn=56%, fp=43%
+fn=1%, tp=98%]
+
+Threshold: 0.16 
+[tn=108, fp=80
+fn=1, tp=75]
+
+Threshold: 0.16 
+[tn=57%, fp=42%
+fn=1%, tp=98%]
+
+Threshold: 0.162 
+[tn=109, fp=79
+fn=1, tp=75]
+
+Threshold: 0.162 
+[tn=57%, fp=42%
+fn=1%, tp=98%]
+
+Threshold: 0.17300000000000001 
+[tn=110, fp=78
+fn=1, tp=75]
+
+Threshold: 0.17300000000000001 
+[tn=58%, fp=41%
+fn=1%, tp=98%]
+
+Threshold: 0.17500000000000002 
+[tn=111, fp=77
+fn=1, tp=75]
+
+Threshold: 0.17500000000000002 
+[tn=59%, fp=40%
+fn=1%, tp=98%]
+
+Threshold: 0.191 
+[tn=112, fp=76
+fn=1, tp=75]
+
+Threshold: 0.191 
+[tn=59%, fp=40%
+fn=1%, tp=98%]
+
+Threshold: 0.196 
+[tn=113, fp=75
+fn=1, tp=75]
+
+Threshold: 0.196 
+[tn=60%, fp=39%
+fn=1%, tp=98%]
+
+Threshold: 0.197 
+[tn=114, fp=74
+fn=1, tp=75]
+
+Threshold: 0.197 
+[tn=60%, fp=39%
+fn=1%, tp=98%]
+
+Threshold: 0.209 
+[tn=115, fp=73
+fn=1, tp=75]
+
+Threshold: 0.209 
+[tn=61%, fp=38%
+fn=1%, tp=98%]
+
+Threshold: 0.226 
+[tn=116, fp=72
+fn=1, tp=75]
+
+Threshold: 0.226 
+[tn=61%, fp=38%
+fn=1%, tp=98%]
+
+Threshold: 0.23700000000000002 
+[tn=118, fp=70
+fn=1, tp=75]
+
+Threshold: 0.23700000000000002 
+[tn=62%, fp=37%
+fn=1%, tp=98%]
+
+Threshold: 0.23900000000000002 
+[tn=120, fp=68
+fn=1, tp=75]
+
+Threshold: 0.23900000000000002 
+[tn=63%, fp=36%
+fn=1%, tp=98%]
+
+Threshold: 0.27 
+[tn=122, fp=66
+fn=1, tp=75]
+
+Threshold: 0.27 
+[tn=64%, fp=35%
+fn=1%, tp=98%]
+
+Threshold: 0.271 
+[tn=123, fp=65
+fn=1, tp=75]
+
+Threshold: 0.271 
+[tn=65%, fp=34%
+fn=1%, tp=98%]
+
+Threshold: 0.28 
+[tn=124, fp=64
+fn=1, tp=75]
+
+Threshold: 0.28 
+[tn=65%, fp=34%
+fn=1%, tp=98%]
+
+Threshold: 0.295 
+[tn=125, fp=63
+fn=1, tp=75]
+
+Threshold: 0.295 
+[tn=66%, fp=33%
+fn=1%, tp=98%]
+
+Threshold: 0.302 
+[tn=126, fp=62
+fn=1, tp=75]
+
+Threshold: 0.302 
+[tn=67%, fp=32%
+fn=1%, tp=98%]
+
+Threshold: 0.311 
+[tn=127, fp=61
+fn=1, tp=75]
+
+Threshold: 0.311 
+[tn=67%, fp=32%
+fn=1%, tp=98%]
+
+Threshold: 0.312 
+[tn=129, fp=59
+fn=1, tp=75]
+
+Threshold: 0.312 
+[tn=68%, fp=31%
+fn=1%, tp=98%]
+
+Threshold: 0.313 
+[tn=130, fp=58
+fn=1, tp=75]
+
+Threshold: 0.313 
+[tn=69%, fp=30%
+fn=1%, tp=98%]
+
+Threshold: 0.34400000000000003 
+[tn=131, fp=57
+fn=1, tp=75]
+
+Threshold: 0.34400000000000003 
+[tn=69%, fp=30%
+fn=1%, tp=98%]
+
+Threshold: 0.354 
+[tn=132, fp=56
+fn=1, tp=75]
+
+Threshold: 0.354 
+[tn=70%, fp=29%
+fn=1%, tp=98%]
+
+Threshold: 0.359 
+[tn=133, fp=55
+fn=1, tp=75]
+
+Threshold: 0.359 
+[tn=70%, fp=29%
+fn=1%, tp=98%]
+
+Threshold: 0.365 
+[tn=134, fp=54
+fn=1, tp=75]
+
+Threshold: 0.365 
+[tn=71%, fp=28%
+fn=1%, tp=98%]
+
+Threshold: 0.367 
+[tn=136, fp=52
+fn=1, tp=75]
+
+Threshold: 0.367 
+[tn=72%, fp=27%
+fn=1%, tp=98%]
+
+Threshold: 0.385 
+[tn=137, fp=51
+fn=1, tp=75]
+
+Threshold: 0.385 
+[tn=72%, fp=27%
+fn=1%, tp=98%]
+
+Threshold: 0.417 
+[tn=138, fp=50
+fn=1, tp=75]
+
+Threshold: 0.417 
+[tn=73%, fp=26%
+fn=1%, tp=98%]
+
+Threshold: 0.42 
+[tn=139, fp=49
+fn=1, tp=75]
+
+Threshold: 0.42 
+[tn=73%, fp=26%
+fn=1%, tp=98%]
+
+Threshold: 0.421 
+[tn=140, fp=48
+fn=1, tp=75]
+
+Threshold: 0.421 
+[tn=74%, fp=25%
+fn=1%, tp=98%]
+
+Threshold: 0.426 
+[tn=140, fp=48
+fn=2, tp=74]
+
+Threshold: 0.426 
+[tn=74%, fp=25%
+fn=2%, tp=97%]
+
+Threshold: 0.462 
+[tn=141, fp=47
+fn=2, tp=74]
+
+Threshold: 0.462 
+[tn=75%, fp=25%
+fn=2%, tp=97%]
+
+Threshold: 0.47100000000000003 
+[tn=142, fp=46
+fn=2, tp=74]
+
+Threshold: 0.47100000000000003 
+[tn=75%, fp=24%
+fn=2%, tp=97%]
+
+Threshold: 0.497 
+[tn=143, fp=45
+fn=2, tp=74]
+
+Threshold: 0.497 
+[tn=76%, fp=23%
+fn=2%, tp=97%]
+
+Threshold: 0.514 
+[tn=144, fp=44
+fn=2, tp=74]
+
+Threshold: 0.514 
+[tn=76%, fp=23%
+fn=2%, tp=97%]
+
+Threshold: 0.532 
+[tn=145, fp=43
+fn=2, tp=74]
+
+Threshold: 0.532 
+[tn=77%, fp=22%
+fn=2%, tp=97%]
+
+Threshold: 0.583 
+[tn=147, fp=41
+fn=2, tp=74]
+
+Threshold: 0.583 
+[tn=78%, fp=21%
+fn=2%, tp=97%]
+
+Threshold: 0.584 
+[tn=148, fp=40
+fn=2, tp=74]
+
+Threshold: 0.584 
+[tn=78%, fp=21%
+fn=2%, tp=97%]
+
+Threshold: 0.601 
+[tn=149, fp=39
+fn=2, tp=74]
+
+Threshold: 0.601 
+[tn=79%, fp=20%
+fn=2%, tp=97%]
+
+Threshold: 0.605 
+[tn=150, fp=38
+fn=2, tp=74]
+
+Threshold: 0.605 
+[tn=79%, fp=20%
+fn=2%, tp=97%]
+
+Threshold: 0.609 
+[tn=151, fp=37
+fn=2, tp=74]
+
+Threshold: 0.609 
+[tn=80%, fp=19%
+fn=2%, tp=97%]
+
+Threshold: 0.612 
+[tn=152, fp=36
+fn=2, tp=74]
+
+Threshold: 0.612 
+[tn=80%, fp=19%
+fn=2%, tp=97%]
+
+Threshold: 0.617 
+[tn=153, fp=35
+fn=2, tp=74]
+
+Threshold: 0.617 
+[tn=81%, fp=18%
+fn=2%, tp=97%]
+
+Threshold: 0.621 
+[tn=155, fp=33
+fn=2, tp=74]
+
+Threshold: 0.621 
+[tn=82%, fp=17%
+fn=2%, tp=97%]
+
+Threshold: 0.663 
+[tn=156, fp=32
+fn=2, tp=74]
+
+Threshold: 0.663 
+[tn=82%, fp=17%
+fn=2%, tp=97%]
+
+Threshold: 0.676 
+[tn=157, fp=31
+fn=2, tp=74]
+
+Threshold: 0.676 
+[tn=83%, fp=16%
+fn=2%, tp=97%]
+
+Threshold: 0.686 
+[tn=158, fp=30
+fn=2, tp=74]
+
+Threshold: 0.686 
+[tn=84%, fp=15%
+fn=2%, tp=97%]
+
+Threshold: 0.6930000000000001 
+[tn=159, fp=29
+fn=2, tp=74]
+
+Threshold: 0.6930000000000001 
+[tn=84%, fp=15%
+fn=2%, tp=97%]
+
+Threshold: 0.704 
+[tn=160, fp=28
+fn=2, tp=74]
+
+Threshold: 0.704 
+[tn=85%, fp=14%
+fn=2%, tp=97%]
+
+Threshold: 0.723 
+[tn=161, fp=27
+fn=2, tp=74]
+
+Threshold: 0.723 
+[tn=85%, fp=14%
+fn=2%, tp=97%]
+
+Threshold: 0.725 
+[tn=162, fp=26
+fn=2, tp=74]
+
+Threshold: 0.725 
+[tn=86%, fp=13%
+fn=2%, tp=97%]
+
+Threshold: 0.73 
+[tn=163, fp=25
+fn=2, tp=74]
+
+Threshold: 0.73 
+[tn=86%, fp=13%
+fn=2%, tp=97%]
+
+Threshold: 0.734 
+[tn=164, fp=24
+fn=2, tp=74]
+
+Threshold: 0.734 
+[tn=87%, fp=12%
+fn=2%, tp=97%]
+
+Threshold: 0.739 
+[tn=165, fp=23
+fn=2, tp=74]
+
+Threshold: 0.739 
+[tn=87%, fp=12%
+fn=2%, tp=97%]
+
+Threshold: 0.753 
+[tn=166, fp=22
+fn=2, tp=74]
+
+Threshold: 0.753 
+[tn=88%, fp=11%
+fn=2%, tp=97%]
+
+Threshold: 0.786 
+[tn=167, fp=21
+fn=2, tp=74]
+
+Threshold: 0.786 
+[tn=88%, fp=11%
+fn=2%, tp=97%]
+
+Threshold: 0.8170000000000001 
+[tn=168, fp=20
+fn=2, tp=74]
+
+Threshold: 0.8170000000000001 
+[tn=89%, fp=10%
+fn=2%, tp=97%]
+
+Threshold: 0.8310000000000001 
+[tn=169, fp=19
+fn=2, tp=74]
+
+Threshold: 0.8310000000000001 
+[tn=89%, fp=10%
+fn=2%, tp=97%]
+
+Threshold: 0.843 
+[tn=170, fp=18
+fn=2, tp=74]
+
+Threshold: 0.843 
+[tn=90%, fp=9%
+fn=2%, tp=97%]
+
+Threshold: 0.844 
+[tn=171, fp=17
+fn=2, tp=74]
+
+Threshold: 0.844 
+[tn=90%, fp=9%
+fn=2%, tp=97%]
+
+Threshold: 0.848 
+[tn=172, fp=16
+fn=2, tp=74]
+
+Threshold: 0.848 
+[tn=91%, fp=8%
+fn=2%, tp=97%]
+
+Threshold: 0.852 
+[tn=172, fp=16
+fn=3, tp=73]
+
+Threshold: 0.852 
+[tn=91%, fp=8%
+fn=3%, tp=96%]
+
+Threshold: 0.862 
+[tn=172, fp=16
+fn=4, tp=72]
+
+Threshold: 0.862 
+[tn=91%, fp=8%
+fn=5%, tp=94%]
+
+Threshold: 0.869 
+[tn=173, fp=15
+fn=4, tp=72]
+
+Threshold: 0.869 
+[tn=92%, fp=7%
+fn=5%, tp=94%]
+
+Threshold: 0.872 
+[tn=173, fp=15
+fn=5, tp=71]
+
+Threshold: 0.872 
+[tn=92%, fp=7%
+fn=6%, tp=93%]
+
+Threshold: 0.892 
+[tn=174, fp=14
+fn=5, tp=71]
+
+Threshold: 0.892 
+[tn=92%, fp=7%
+fn=6%, tp=93%]
+
+Threshold: 0.902 
+[tn=175, fp=13
+fn=5, tp=71]
+
+Threshold: 0.902 
+[tn=93%, fp=6%
+fn=6%, tp=93%]
+
+Threshold: 0.91 
+[tn=176, fp=12
+fn=5, tp=71]
+
+Threshold: 0.91 
+[tn=93%, fp=6%
+fn=6%, tp=93%]
+
+Threshold: 0.937 
+[tn=177, fp=11
+fn=5, tp=71]
+
+Threshold: 0.937 
+[tn=94%, fp=5%
+fn=6%, tp=93%]
+
+Threshold: 0.9380000000000001 
+[tn=177, fp=11
+fn=6, tp=70]
+
+Threshold: 0.9380000000000001 
+[tn=94%, fp=5%
+fn=7%, tp=92%]
+
+Threshold: 0.9420000000000001 
+[tn=178, fp=10
+fn=6, tp=70]
+
+Threshold: 0.9420000000000001 
+[tn=94%, fp=5%
+fn=7%, tp=92%]
+
+Threshold: 0.9430000000000001 
+[tn=179, fp=9
+fn=6, tp=70]
+
+Threshold: 0.9430000000000001 
+[tn=95%, fp=4%
+fn=7%, tp=92%]
+
+Threshold: 0.9460000000000001 
+[tn=180, fp=8
+fn=6, tp=70]
+
+Threshold: 0.9460000000000001 
+[tn=95%, fp=4%
+fn=7%, tp=92%]
+
+Threshold: 0.9510000000000001 
+[tn=180, fp=8
+fn=7, tp=69]
+
+Threshold: 0.9510000000000001 
+[tn=95%, fp=4%
+fn=9%, tp=90%]
+
+Threshold: 0.9540000000000001 
+[tn=180, fp=8
+fn=8, tp=68]
+
+Threshold: 0.9540000000000001 
+[tn=95%, fp=4%
+fn=10%, tp=89%]
+
+Threshold: 0.9570000000000001 
+[tn=182, fp=6
+fn=8, tp=68]
+
+Threshold: 0.9570000000000001 
+[tn=96%, fp=3%
+fn=10%, tp=89%]
+
+Threshold: 0.9580000000000001 
+[tn=183, fp=5
+fn=8, tp=68]
+
+Threshold: 0.9580000000000001 
+[tn=97%, fp=2%
+fn=10%, tp=89%]
+
+Threshold: 0.9590000000000001 
+[tn=183, fp=5
+fn=9, tp=67]
+
+Threshold: 0.9590000000000001 
+[tn=97%, fp=2%
+fn=11%, tp=88%]
+
+Threshold: 0.962 
+[tn=183, fp=5
+fn=11, tp=65]
+
+Threshold: 0.962 
+[tn=97%, fp=2%
+fn=14%, tp=85%]
+
+Threshold: 0.972 
+[tn=184, fp=4
+fn=11, tp=65]
+
+Threshold: 0.972 
+[tn=97%, fp=2%
+fn=14%, tp=85%]
+
+Threshold: 0.974 
+[tn=184, fp=4
+fn=12, tp=64]
+
+Threshold: 0.974 
+[tn=97%, fp=2%
+fn=15%, tp=84%]
+
+Threshold: 0.976 
+[tn=184, fp=4
+fn=13, tp=63]
+
+Threshold: 0.976 
+[tn=97%, fp=2%
+fn=17%, tp=82%]
+
+Threshold: 0.978 
+[tn=184, fp=4
+fn=15, tp=61]
+
+Threshold: 0.978 
+[tn=97%, fp=2%
+fn=19%, tp=80%]
+
+Threshold: 0.979 
+[tn=185, fp=3
+fn=16, tp=60]
+
+Threshold: 0.979 
+[tn=98%, fp=1%
+fn=21%, tp=78%]
+
+Threshold: 0.98 
+[tn=186, fp=2
+fn=16, tp=60]
+
+Threshold: 0.98 
+[tn=98%, fp=1%
+fn=21%, tp=78%]
+
+Threshold: 0.983 
+[tn=186, fp=2
+fn=17, tp=59]
+
+Threshold: 0.983 
+[tn=98%, fp=1%
+fn=22%, tp=77%]
+
+Threshold: 0.985 
+[tn=187, fp=1
+fn=18, tp=58]
+
+Threshold: 0.985 
+[tn=99%, fp=0%
+fn=23%, tp=76%]
+
+Threshold: 0.986 
+[tn=187, fp=1
+fn=19, tp=57]
+
+Threshold: 0.986 
+[tn=99%, fp=0%
+fn=25%, tp=75%]
+
+Threshold: 0.987 
+[tn=187, fp=1
+fn=23, tp=53]
+
+Threshold: 0.987 
+[tn=99%, fp=0%
+fn=30%, tp=69%]
+
+Threshold: 0.988 
+[tn=187, fp=1
+fn=27, tp=49]
+
+Threshold: 0.988 
+[tn=99%, fp=0%
+fn=35%, tp=64%]
+
+Threshold: 0.989 
+[tn=187, fp=1
+fn=30, tp=46]
+
+Threshold: 0.989 
+[tn=99%, fp=0%
+fn=39%, tp=60%]
+
+Threshold: 0.991 
+[tn=187, fp=1
+fn=32, tp=44]
+
+Threshold: 0.991 
+[tn=99%, fp=0%
+fn=42%, tp=57%]
+
+Threshold: 0.992 
+[tn=187, fp=1
+fn=33, tp=43]
+
+Threshold: 0.992 
+[tn=99%, fp=0%
+fn=43%, tp=56%]
+
+Threshold: 0.993 
+[tn=187, fp=1
+fn=35, tp=41]
+
+Threshold: 0.993 
+[tn=99%, fp=0%
+fn=46%, tp=53%]
+
+Threshold: 0.994 
+[tn=188, fp=0
+fn=35, tp=41]
+
+Threshold: 0.994 
+[tn=100%, fp=0%
+fn=46%, tp=53%]

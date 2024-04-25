@@ -4,9 +4,20 @@ from pre_proccess import process_audio_folder
 from features_extraction import extract_features_from_processed_data, plot_lpcc_features
 import json
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, classification_report, det_curve
 import matplotlib.pyplot as plt
-from sklearn.metrics import det_curve, DetCurveDisplay
+
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.pipeline import make_pipeline
+from sklearn.svm import LinearSVC
+import matplotlib.pyplot as plt
+from sklearn.metrics import DetCurveDisplay, RocCurveDisplay
+
+
+CON_MAT_FILE = 'con_mat_txt.txt'
 
 
 def generate_sine_wave(frequency, sample_rate, duration):
@@ -86,6 +97,11 @@ def write_features_to_json(file_features: object, file_name: object, is_authoriz
 
     print(f"Data written to {output_file} successfully.")
 
+def write_string_to_file(str, file):
+    f = open(file, "a")
+    f.write(str)
+    f.close()
+
 
 def read_features_and_labels(jsonl_file):
     """
@@ -115,47 +131,27 @@ def train_classifier(X, y):
     x = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])
     y = np.array([1, 1, 1, 0, 0, 0])"""
 
-    clf_pf = GaussianNB(priors=[0.5, 0.5])
+    clf_pf = GaussianNB(priors=[0.2, 0.8])
     clf_pf.fit(X, y)
 
     return clf_pf
 
 
-def compute_DET_confusion(X_test, y_test):
-    y_pred = clf.predict(X_test)
-
+def compute_DET_confusion(y_pred, y_test):
     # Step 2: Compute confusion matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    """# Step 3: Plot confusion matrix
+    # Step 3: Plot confusion matrix
     plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
     plt.title('Confusion Matrix')
     plt.colorbar()
     plt.xlabel('Predicted Label')
     plt.ylabel('True Label')
-    plt.show()"""
-
-    # Step 4: Compute DET curve
-    fpr, fnr, _ = det_curve(y_test, y_pred)
-    display = DetCurveDisplay(fpr=fpr, fnr=fnr, estimator_name="GaussianNB")
-    display.plot()
-    plt.title('DET Curve')
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('False Negative Rate')
     plt.show()
-
-
-def mohamad_def(clf, X_test, y_test):
-    fig, ax_det = plt.subplots(1, 1, figsize=(11, 5))
-    DetCurveDisplay.from_estimator(clf, X_test,y_test, ax=ax_det)
-    ax_det.set_title("Detection Error Tradeoff (DET) curves")
-    ax_det.grid(linestyle="--")
-    plt.legend()
-    plt.show()
-
 
 
 if __name__ == "__main__":
+
     """path = "TEDLIUM_release1\\db_for_threshold\\thershold_db"
     data = process_audio_folder(path)
     extracted_features = extract_features_from_processed_data(data)
@@ -170,49 +166,49 @@ if __name__ == "__main__":
 
     for x, y in extracted_features.items():
         write_features_to_json(y, x, False, 'TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\out_threshold_test.txt')
-    """
+"""
 
-    X_test, y_test = read_features_and_labels('TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\out_threshold_test.txt')
+    X_test, y_test = read_features_and_labels(
+        'TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\out_threshold_test.txt')
     X, y = read_features_and_labels('TEDLIUM_release1\\db_for_threshold\\thershold_db\\out_threshold.txt')
-
 
     print("Train Data")
     clf = train_classifier(X, y)
 
-    y_pred = clf.predict(X_test)
+    y_pred = clf.predict_proba(X_test)[:, 1]
 
+    for i in range(len(y_pred)):
+        y_pred[i] = y_pred[i] - (y_pred[i] % 0.001)
+
+    y_pred_arr = np.array(y_pred)
+    print(y_pred_arr)
+    y_test_arr = np.array(y_test)
+    print(y_test_arr)
+    X_test_arr = np.array(X_test)
+    fpr, fnr, thresholds = det_curve(y_test_arr, y_pred_arr)
 
     fig, ax_det = plt.subplots(1, 1, figsize=(11, 5))
-    #DetCurveDisplay.from_estimator(clf, X_test, y_test, ax=ax_det)
-    DetCurveDisplay.from_predictions(clf, y_test, y_pred)
+    DetCurveDisplay.from_estimator(clf, X_test_arr, y_test_arr, ax=ax_det)
     ax_det.set_title("Detection Error Tradeoff (DET) curves")
     ax_det.grid(linestyle="--")
     plt.legend()
     plt.show()
 
-    """print((clf.predict(X_test[0:9])))
-    print("Other")
-    print(clf.predict(X_test[10::]))
+    arr = np.copy(y_pred_arr)
 
-    print("Check for Dan Dennett")
-    data = clf.predict_proba(X_test[0:9])
-    formatted_data = [[f"{num:.3f}" for num in sublist] for sublist in data]
+    for i in range(len(thresholds)):
+        for j in range(len(y_pred_arr)):
+            if y_pred_arr[j] >= thresholds[i]:
+                arr[j] = 1
+            else:
+                arr[j] = 0
+        tn, fp, fn, tp = confusion_matrix(y_test_arr, arr).ravel()
 
-    # Print formatted data
-    for sublist in formatted_data:
-        print(sublist)
-
-    print("Others")
-    data_test = clf.predict_proba(X_test[10::])
-    formatted_data_test = [[f"{num:.6f}" for num in sublist_test] for sublist_test in data_test]
-
-    # Print formatted data
-    for sublist_test in formatted_data_test:
-        print(sublist_test)"""
-
-
-    """print("Check for other Speaker")
-    test_data = clf.predict_proba(X_test[9::])
-    rounded_data_test = np.round(test_data, 4)
-    print(rounded_data_test)
-    print(clf.predict(X_test[9::]))"""
+        str1 = (f"\nThreshold: {thresholds[i]} \n[tn={tn}, fp={fp}\nfn={fn}, tp={tp}]\n")
+        tn_perc = int(tn/(tn+fp)*100)
+        fp_perc = int(fp/(tn+fp)*100)
+        fn_perc = int(fn/(fn+tp)*100)
+        tp_perc = int(tp/(fn+tp)*100)
+        str2 = (f"\nThreshold: {thresholds[i]} \n[tn={tn_perc}%, fp={fp_perc}%\nfn={fn_perc}%, tp={tp_perc}%]\n")
+        write_string_to_file(str1, CON_MAT_FILE)
+        write_string_to_file(str2, CON_MAT_FILE)
