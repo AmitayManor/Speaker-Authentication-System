@@ -15,7 +15,8 @@ from sklearn.pipeline import make_pipeline
 from sklearn.svm import LinearSVC
 import matplotlib.pyplot as plt
 from sklearn.metrics import DetCurveDisplay, RocCurveDisplay
-
+from db_process import *
+from file_ops import *
 
 CON_MAT_FILE = 'con_mat_txt.txt'
 
@@ -149,28 +150,31 @@ def compute_DET_confusion(y_pred, y_test):
     plt.ylabel('True Label')
     plt.show()
 
+THRESHOLD_DB_PATH_AUTHORIZED = "TEDLIUM_release1\\db_for_threshold\\thershold_db\\authorized"
+THRESHOLD_DB_PATH_IMPOSTER = "TEDLIUM_release1\\db_for_threshold\\thershold_db\\imposter"
+THRESHOLD_DB_PATH_TEST_AUTHORIZED = "TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\authorized"
+THRESHOLD_DB_PATH_TEST_IMPOSTER = "TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\imposter"
 
+THRESHOLD_DB_PATH_JSON = "TEDLIUM_release1\\db_for_threshold\\threshold_db"
+THRESHOLD_DB_PATH_TEST_JSON = "TEDLIUM_release1\\db_for_threshold\\threshold_db_test"
+
+THRESHOLD_DB_FILE_JSON = "TEDLIUM_release1\\db_for_threshold\\thershold_db\\extracted_feature_train.txt"
+THRESHOLD_DB_TEST_FILE_JSON = "TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\extracted_feature_test.txt"
+SAVE_THRESHOLDS_MATRIX = "TEDLIUM_release1\\db_for_threshold\\thershold_db\\thresholds_confusion_matrix.txt"
 if __name__ == "__main__":
 
-    """path = "TEDLIUM_release1\\db_for_threshold\\thershold_db"
-    data = process_audio_folder(path)
-    extracted_features = extract_features_from_processed_data(data)
-
-    for x, y in extracted_features.items():
-        write_features_to_json(y, x, False, 'TEDLIUM_release1\\db_for_threshold\\thershold_db\\out_threshold.txt')
+    """# Train
+    compute_data_for_db(THRESHOLD_DB_PATH_AUTHORIZED,THRESHOLD_DB_PATH_IMPOSTER,THRESHOLD_DB_FILE_JSON,THRESHOLD_DB_FILE_JSON)
     
+    # Test
+    compute_data_for_db(THRESHOLD_DB_PATH_TEST_AUTHORIZED, THRESHOLD_DB_PATH_TEST_IMPOSTER, THRESHOLD_DB_TEST_FILE_JSON,THRESHOLD_DB_TEST_FILE_JSON)
+    """
 
-    path = "TEDLIUM_release1\\db_for_threshold\\threshold_db_test"
-    data = process_audio_folder(path)
-    extracted_features = extract_features_from_processed_data(data)
-
-    for x, y in extracted_features.items():
-        write_features_to_json(y, x, False, 'TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\out_threshold_test.txt')
-"""
+    compute_extracted_data(THRESHOLD_DB_FILE_JSON,THRESHOLD_DB_TEST_FILE_JSON,SAVE_THRESHOLDS_MATRIX)
 
     X_test, y_test = read_features_and_labels(
-        'TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\out_threshold_test.txt')
-    X, y = read_features_and_labels('TEDLIUM_release1\\db_for_threshold\\thershold_db\\out_threshold.txt')
+        'TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\extracted_feature_test.txt')
+    X, y = read_features_and_labels('TEDLIUM_release1\\db_for_threshold\\thershold_db\\extracted_feature_train.txt')
 
     print("Train Data")
     clf = train_classifier(X, y)
@@ -203,12 +207,9 @@ if __name__ == "__main__":
             else:
                 arr[j] = 0
         tn, fp, fn, tp = confusion_matrix(y_test_arr, arr).ravel()
+        tn_perc, fp_perc, fn_perc, tp_perc = confusin_mat_values(tn, fp, fn, tp)
 
         str1 = (f"\nThreshold: {thresholds[i]} \n[tn={tn}, fp={fp}\nfn={fn}, tp={tp}]\n")
-        tn_perc = int(tn/(tn+fp)*100)
-        fp_perc = int(fp/(tn+fp)*100)
-        fn_perc = int(fn/(fn+tp)*100)
-        tp_perc = int(tp/(fn+tp)*100)
         str2 = (f"\nThreshold: {thresholds[i]} \n[tn={tn_perc}%, fp={fp_perc}%\nfn={fn_perc}%, tp={tp_perc}%]\n")
         write_string_to_file(str1, CON_MAT_FILE)
         write_string_to_file(str2, CON_MAT_FILE)
