@@ -1,3 +1,5 @@
+import numpy as np
+
 from features_extraction import *
 from pre_proccess import *
 from file_ops import *
@@ -93,8 +95,8 @@ def compute_con_mat(y_test, y_pred):
     return thresholds
 
 
-def test_thresholds(y_pred, thresholds, file_name):
-
+def test_thresholds(y_test ,y_pred, thresholds, file_name):
+    y_test_arr = np.array((y_test))
     bool_arr = np.copy(y_pred)
 
     for i in range(len(thresholds)):
@@ -103,7 +105,7 @@ def test_thresholds(y_pred, thresholds, file_name):
                 bool_arr[j] = 1
             else:
                 bool_arr[j] = 0
-        tn, fp, fn, tp = confusion_matrix(y_pred, bool_arr).ravel()
+        tn, fp, fn, tp = confusion_matrix(y_test_arr, bool_arr).ravel()
         tn_perc, fp_perc, fn_perc, tp_perc = confusin_mat_values(tn, fp, fn, tp)
         str1 = (f"\nThreshold: {thresholds[i]} \n[tn={tn}, fp={fp}\nfn={fn}, tp={tp}]\n")
         str2 = (f"\nThreshold: {thresholds[i]} \n[tn={tn_perc}%, fp={fp_perc}%\nfn={fn_perc}%, tp={tp_perc}%]\n")
@@ -128,5 +130,5 @@ def compute_extracted_data(train_file, test_file, save_file):
     clf = train_classifier(X, y)
     y_pred = predict_and_round(clf, X_test)
     thresholds = compute_con_mat(y_test, y_pred)
-    test_thresholds(y_pred, thresholds, save_file)
-    plot_det_curve(X_test, y_test)
+    test_thresholds(y_test, y_pred, thresholds, save_file)
+    plot_det_curve(clf, X_test, y_test)

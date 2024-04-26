@@ -160,7 +160,7 @@ THRESHOLD_DB_PATH_TEST_JSON = "TEDLIUM_release1\\db_for_threshold\\threshold_db_
 
 THRESHOLD_DB_FILE_JSON = "TEDLIUM_release1\\db_for_threshold\\thershold_db\\extracted_feature_train.txt"
 THRESHOLD_DB_TEST_FILE_JSON = "TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\extracted_feature_test.txt"
-SAVE_THRESHOLDS_MATRIX = "TEDLIUM_release1\\db_for_threshold\\thershold_db\\thresholds_confusion_matrix.txt"
+SAVE_THRESHOLDS_MATRIX = "TEDLIUM_release1\\db_for_threshold\\thresholds_confusion_matrix.txt"
 if __name__ == "__main__":
 
     """# Train
@@ -170,46 +170,5 @@ if __name__ == "__main__":
     compute_data_for_db(THRESHOLD_DB_PATH_TEST_AUTHORIZED, THRESHOLD_DB_PATH_TEST_IMPOSTER, THRESHOLD_DB_TEST_FILE_JSON,THRESHOLD_DB_TEST_FILE_JSON)
     """
 
-    compute_extracted_data(THRESHOLD_DB_FILE_JSON,THRESHOLD_DB_TEST_FILE_JSON,SAVE_THRESHOLDS_MATRIX)
+    compute_extracted_data(THRESHOLD_DB_FILE_JSON, THRESHOLD_DB_TEST_FILE_JSON, SAVE_THRESHOLDS_MATRIX)
 
-    X_test, y_test = read_features_and_labels(
-        'TEDLIUM_release1\\db_for_threshold\\threshold_db_test\\extracted_feature_test.txt')
-    X, y = read_features_and_labels('TEDLIUM_release1\\db_for_threshold\\thershold_db\\extracted_feature_train.txt')
-
-    print("Train Data")
-    clf = train_classifier(X, y)
-
-    y_pred = clf.predict_proba(X_test)[:, 1]
-
-    for i in range(len(y_pred)):
-        y_pred[i] = y_pred[i] - (y_pred[i] % 0.001)
-
-    y_pred_arr = np.array(y_pred)
-    print(y_pred_arr)
-    y_test_arr = np.array(y_test)
-    print(y_test_arr)
-    X_test_arr = np.array(X_test)
-    fpr, fnr, thresholds = det_curve(y_test_arr, y_pred_arr)
-
-    fig, ax_det = plt.subplots(1, 1, figsize=(11, 5))
-    DetCurveDisplay.from_estimator(clf, X_test_arr, y_test_arr, ax=ax_det)
-    ax_det.set_title("Detection Error Tradeoff (DET) curves")
-    ax_det.grid(linestyle="--")
-    plt.legend()
-    plt.show()
-
-    arr = np.copy(y_pred_arr)
-
-    for i in range(len(thresholds)):
-        for j in range(len(y_pred_arr)):
-            if y_pred_arr[j] >= thresholds[i]:
-                arr[j] = 1
-            else:
-                arr[j] = 0
-        tn, fp, fn, tp = confusion_matrix(y_test_arr, arr).ravel()
-        tn_perc, fp_perc, fn_perc, tp_perc = confusin_mat_values(tn, fp, fn, tp)
-
-        str1 = (f"\nThreshold: {thresholds[i]} \n[tn={tn}, fp={fp}\nfn={fn}, tp={tp}]\n")
-        str2 = (f"\nThreshold: {thresholds[i]} \n[tn={tn_perc}%, fp={fp_perc}%\nfn={fn_perc}%, tp={tp_perc}%]\n")
-        write_string_to_file(str1, CON_MAT_FILE)
-        write_string_to_file(str2, CON_MAT_FILE)
