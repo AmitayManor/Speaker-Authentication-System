@@ -8,30 +8,9 @@ import matplotlib.pyplot as plt
 SAMPLE_RATE = 16000
 ENERGY_THRESHOLD = 0.0001
 
-"""     Work FLow:      
-        
-        1. Reading .wav Audio files from test sub folder (about 10 speakers)
-        2. Pre-process each .wav audio file:
-            1. pre emphasize
-            2. dc removal
-            3. calculate energy (and ZCR if needed)
-            4. classify silence segments in the file (by energy level)
-            5. trim silence segments
-        3. Returns processed data (format: {[audio data] : 'Speaker name'})
-        4. Save the new data in another sub folder
-        5. Moving to Features extractions
-        
-"""
-
 
 def plot_audio(audio_data, title):
-    """
-    Plot the waveform of an audio signal.
 
-    Parameters:
-    - audio_data: numpy array of the audio samples.
-    - title: title of the plot.
-    """
     plt.figure(figsize=(10, 4))
     plt.plot(audio_data, color='blue')
     plt.title(title)
@@ -68,16 +47,13 @@ def remove_silence(audio_data, energy, win_length, overlap, threshold=ENERGY_THR
     step = win_length - overlap
     silent_indices = energy <= threshold
 
-    # Create an array of indices that correspond to the start of each window
     starts = np.arange(0, len(audio_data) - win_length, step)
     ends = starts + win_length
 
-    # Create a mask for all indices that are silent
     silent_mask = np.zeros_like(audio_data, dtype=bool)
     for start, is_silent in zip(starts, silent_indices):
         silent_mask[start:start + win_length] = is_silent
 
-    # Use the inverse of the mask to select non-silent segments
     non_silent_audio = audio_data[~silent_mask]
 
     return non_silent_audio
@@ -87,12 +63,10 @@ def pre_emphasis_filter(signal, alpha=0.97):
     return lfilter([1, -alpha], 1, signal)
 
 
-# DC removal
 def remove_dc(signal):
     return signal - np.mean(signal)
 
 
-# Energy Rate calculation
 def energy_rate(signal, win_length, overlap, sample_rate):
     step = win_length - overlap
     energy = []
@@ -100,10 +74,9 @@ def energy_rate(signal, win_length, overlap, sample_rate):
     for i in frames:
         windowed_signal = signal[i:i + win_length] * hamming(win_length)
         energy.append(np.sum(windowed_signal ** 2) / float(win_length))
-        # Convert to numpy array for easier manipulation
+
     energy = np.array(energy)
 
-    # Normalize the energy values
     normalized_energy = (energy - np.min(energy)) / (np.max(energy) - np.min(energy)) if np.max(energy) != np.min(
         energy) else np.zeros_like(energy)
 
