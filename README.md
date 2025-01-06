@@ -1,6 +1,6 @@
 # Speaker Authentication System
 
-A text-independent speaker authentication system using LPCC (Linear Predictive Cepstral Coefficients) features and Gaussian Naive Bayes classification. This project implements a lightweight, efficient speaker verification system suitable for mobile devices.
+A speaker authentication system using LPCC (Linear Predictive Cepstral Coefficients) features and Gaussian Naive Bayes classification. This project implements a lightweight, efficient speaker verification system suitable for mobile devices.
 
 ## Overview
 
